@@ -1190,7 +1190,7 @@ void execute_new_code(TSRMLS_D) /* {{{ */
 				opline->op2.jmp_addr = &CG(active_op_array)->opcodes[opline->op2.opline_num];
 				break;
 		}
-		ZEND_VM_SET_OPCODE_HANDLER(opline);
+		ZEND_VM_SET_OPCODE_HANDLER(opline); //注册handle
 		opline++;
 	}
 

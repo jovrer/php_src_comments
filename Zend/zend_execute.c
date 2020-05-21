@@ -1578,7 +1578,7 @@ void zend_free_compiled_variables(zend_execute_data *execute_data TSRMLS_DC) /* 
  *                             +========================================+    |
  *                                                                           |
  *                             +========================================+    |
- *                             | TMP_VAR[op_arrat->T-1]                 |    |
+ *                             | TMP_VAR[op_array->T-1]                 |    |
  *                             | ...                                    |    |
  *     EX_TMP_VAR_NUM(0) ----> | TMP_VAR[0]                             |    |
  *                             +----------------------------------------+    |

@@ -279,7 +279,7 @@ struct _zend_op_array {
 	zend_uint *refcount;
 
 	zend_op *opcodes;
-	zend_uint last;
+	zend_uint last; //最末opcode下标
 
 	zend_compiled_variable *vars;
 	int last_var;

@@ -45902,7 +45902,7 @@ static opcode_handler_t zend_vm_get_opcode_handler(zend_uchar opcode, zend_op* o
 			_UNUSED_CODE, /* 15             */
 			_CV_CODE      /* 16 = IS_CV     */
 		};
-		return zend_opcode_handlers[opcode * 25 + zend_vm_decode[op->op1_type] * 5 + zend_vm_decode[op->op2_type]];
+		return zend_opcode_handlers[opcode * 25 + zend_vm_decode[op->op1_type] * 5 + zend_vm_decode[op->op2_type]]; //注册handle why?
 }
 
 ZEND_API void zend_vm_set_opcode_handler(zend_op* op)
