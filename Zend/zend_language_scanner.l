@@ -595,7 +595,7 @@ ZEND_API zend_op_array *compile_file(zend_file_handle *file_handle, int type TSR
 	if (retval) {
 		CG(active_op_array) = original_active_op_array;
 		if (compilation_successful) {
-			pass_two(op_array TSRMLS_CC);
+			pass_two(op_array TSRMLS_CC); //注册opcode handle
 			zend_release_labels(0 TSRMLS_CC);
 		} else {
 			efree(op_array);

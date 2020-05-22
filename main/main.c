@@ -2282,7 +2282,7 @@ int php_module_startup(sapi_module_struct *sf, zend_module_entry *additional_mod
 	REGISTER_INI_ENTRIES();
 
 	/* Register Zend ini entries */
-	zend_register_standard_ini_entries(TSRMLS_C);
+	zend_register_standard_ini_entries(TSRMLS_C); //?
 
 	/* Disable realpath cache if an open_basedir is set */
 	if (PG(open_basedir) && *PG(open_basedir)) {
@@ -2304,7 +2304,7 @@ int php_module_startup(sapi_module_struct *sf, zend_module_entry *additional_mod
 	php_startup_sapi_content_types(TSRMLS_C);
 
 	/* startup extensions statically compiled in */
-	if (php_register_internal_extensions_func(TSRMLS_C) == FAILURE) {
+	if (php_register_internal_extensions_func(TSRMLS_C) == FAILURE) { //注册内部扩展
 		php_printf("Unable to start builtin modules\n");
 		return FAILURE;
 	}
@@ -2325,7 +2325,7 @@ int php_module_startup(sapi_module_struct *sf, zend_module_entry *additional_mod
 	/* start Zend extensions */
 	zend_startup_extensions();
 
-	zend_collect_module_handlers(TSRMLS_C);
+	zend_collect_module_handlers(TSRMLS_C); //GC?
 
 	/* register additional functions */
 	if (sapi_module.additional_functions) {
