@@ -589,7 +589,7 @@ static int ZEND_FASTCALL zend_do_fcall_common_helper_SPEC(ZEND_OPCODE_HANDLER_AR
 				ZEND_VM_ENTER();
 			}
 		} else {
-			zend_execute(EG(active_op_array) TSRMLS_CC);
+			zend_execute(EG(active_op_array) TSRMLS_CC);//继续内部执行
 		}
 
 		EG(opline_ptr) = &EX(opline);
@@ -45902,7 +45902,7 @@ static opcode_handler_t zend_vm_get_opcode_handler(zend_uchar opcode, zend_op* o
 			_UNUSED_CODE, /* 15             */
 			_CV_CODE      /* 16 = IS_CV     */
 		};
-		return zend_opcode_handlers[opcode * 25 + zend_vm_decode[op->op1_type] * 5 + zend_vm_decode[op->op2_type]]; //注册handle why?
+		return zend_opcode_handlers[opcode * 25 + zend_vm_decode[op->op1_type] * 5 + zend_vm_decode[op->op2_type]]; //每个opcode25个注册方法
 }
 
 ZEND_API void zend_vm_set_opcode_handler(zend_op* op)
