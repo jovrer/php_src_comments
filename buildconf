@@ -41,7 +41,7 @@ fi
 rm -f generated_lists
 
 if test "$debug" = "yes"; then
-  ${MAKE:-make} -s -f build/build.mk SUPPRESS_WARNINGS=""
+  ${MAKE:-make} -f build/build.mk SUPPRESS_WARNINGS=""
 else
-  ${MAKE:-make} -s -f build/build.mk
+  ${MAKE:-make} -f build/build.mk
 fi
