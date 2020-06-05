@@ -33,7 +33,7 @@
 #endif
 
 /* these variables are true statics/globals, and have to be mutex'ed on every access */
-ZEND_API HashTable module_registry;
+ZEND_API HashTable module_registry; //所有注册module
 
 static zend_module_entry **module_request_startup_handlers;
 static zend_module_entry **module_request_shutdown_handlers;
@@ -2095,7 +2095,7 @@ ZEND_API int zend_register_functions(zend_class_entry *scope, const zend_functio
 	if (!target_function_table) {
 		target_function_table = CG(function_table);
 	}
-	internal_function->type = ZEND_INTERNAL_FUNCTION;
+	internal_function->type = ZEND_INTERNAL_FUNCTION;//???
 	internal_function->module = EG(current_module);
 
 	if (scope) {
@@ -2110,7 +2110,7 @@ ZEND_API int zend_register_functions(zend_class_entry *scope, const zend_functio
 	}
 
 	while (ptr->fname) {
-		internal_function->handler = ptr->handler;
+		internal_function->handler = ptr->handler; //why interal?
 		internal_function->function_name = (char*)ptr->fname;
 		internal_function->scope = scope;
 		internal_function->prototype = NULL;

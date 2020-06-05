@@ -341,7 +341,7 @@ int zend_startup_builtin_functions(TSRMLS_D) /* {{{ */
 {
 	zend_builtin_module.module_number = 0;
 	zend_builtin_module.type = MODULE_PERSISTENT;
-	return (EG(current_module) = zend_register_module_ex(&zend_builtin_module TSRMLS_CC)) == NULL ? FAILURE : SUCCESS;
+	return (EG(current_module) = zend_register_module_ex(&zend_builtin_module TSRMLS_CC)) == NULL ? FAILURE : SUCCESS; //internal_functions???
 }
 /* }}} */
 

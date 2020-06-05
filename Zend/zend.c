@@ -745,7 +745,7 @@ int zend_startup(zend_utility_functions *utility_functions, char **extensions TS
 #endif
 
 	zend_interned_strings_init(TSRMLS_C);
-	zend_startup_builtin_functions(TSRMLS_C);
+	zend_startup_builtin_functions(TSRMLS_C); //注册CORE模块
 	zend_register_standard_constants(TSRMLS_C);
 	zend_register_auto_global("GLOBALS", sizeof("GLOBALS") - 1, 1, php_auto_globals_create_globals TSRMLS_CC);
 

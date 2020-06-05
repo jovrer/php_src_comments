@@ -2304,13 +2304,13 @@ int php_module_startup(sapi_module_struct *sf, zend_module_entry *additional_mod
 	php_startup_sapi_content_types(TSRMLS_C);
 
 	/* startup extensions statically compiled in */
-	if (php_register_internal_extensions_func(TSRMLS_C) == FAILURE) { //注册内部扩展
+	if (php_register_internal_extensions_func(TSRMLS_C) == FAILURE) { //注册内部扩展。内部扩展以define module_ptr &module_entry引用
 		php_printf("Unable to start builtin modules\n");
 		return FAILURE;
 	}
 
 	/* start additional PHP extensions */
-	php_register_extensions_bc(additional_modules, num_additional_modules TSRMLS_CC);
+	php_register_extensions_bc(additional_modules, num_additional_modules TSRMLS_CC); //?
 
 	/* load and startup extensions compiled as shared objects (aka DLLs)
 	   as requested by php.ini entries
@@ -2319,7 +2319,7 @@ int php_module_startup(sapi_module_struct *sf, zend_module_entry *additional_mod
 	   which is always an internal extension and to be initialized
 	   ahead of all other internals
 	 */
-	php_ini_register_extensions(TSRMLS_C);
+	php_ini_register_extensions(TSRMLS_C); //zend_module && php_module
 	zend_startup_modules(TSRMLS_C);
 
 	/* start Zend extensions */
@@ -2328,7 +2328,7 @@ int php_module_startup(sapi_module_struct *sf, zend_module_entry *additional_mod
 	zend_collect_module_handlers(TSRMLS_C); //GC?
 
 	/* register additional functions */
-	if (sapi_module.additional_functions) {
+	if (sapi_module.additional_functions) { //addtional functions 2 standand
 		if (zend_hash_find(&module_registry, "standard", sizeof("standard"), (void**)&module)==SUCCESS) {
 			EG(current_module) = module;
 			zend_register_functions(NULL, sapi_module.additional_functions, NULL, MODULE_PERSISTENT TSRMLS_CC);
@@ -2337,8 +2337,8 @@ int php_module_startup(sapi_module_struct *sf, zend_module_entry *additional_mod
 	}
 
 	/* disable certain classes and functions as requested by php.ini */
-	php_disable_functions(TSRMLS_C);
-	php_disable_classes(TSRMLS_C);
+	php_disable_functions(TSRMLS_C);  //handle ->null
+	php_disable_classes(TSRMLS_C); //create_object handle => null
 
 	/* make core report what it should */
 	if (zend_hash_find(&module_registry, "core", sizeof("core"), (void**)&module)==SUCCESS) {
